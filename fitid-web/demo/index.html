@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FitID Demo</title>
+  <style>
+    :root { --bg:#f6f6f7; --surface:#fff; --text:#111113; --muted:#62626c; --border:#e3e3e8; --accent:#111113; --accent-text:#fff; --chip:#eef0f3; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#0b0b0c; --surface:#151518; --text:#f4f4f5; --muted:#a1a1aa; --border:#2a2a2f; --accent:#fff; --accent-text:#000; --chip:#1f1f23; } }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 40px 16px 80px; }
+    .brandmark { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .02em; }
+    .logo { width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: var(--accent-text); display: grid; place-items: center; font-size: 14px; }
+    h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.1; margin: 22px 0 12px; letter-spacing: -.02em; }
+    .lead { font-size: 18px; color: var(--muted); max-width: 62ch; margin: 0; }
+    .quote { margin: 22px 0 0; padding: 14px 18px; border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 12px 12px 0; color: var(--muted); max-width: 62ch; }
+    .flow { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0 0; }
+    .flow span { background: var(--chip); border: 1px solid var(--border); padding: 6px 12px; border-radius: 999px; font-size: 14px; font-weight: 600; }
+    section.step { margin-top: 64px; }
+    .num { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--accent-text); font-weight: 800; margin-right: 10px; }
+    h2 { font-size: 26px; margin: 0 0 8px; display: flex; align-items: center; }
+    .sub { color: var(--muted); margin: 0 0 22px; max-width: 70ch; }
+    .shot { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .shot img { display: block; width: 100%; height: auto; }
+    .shot figcaption { padding: 10px 14px; font-size: 14px; color: var(--muted); border-top: 1px solid var(--border); }
+    .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .split { display: grid; grid-template-columns: 1.7fr 1fr; gap: 16px; align-items: start; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+    .cards .shot img { max-height: 340px; object-fit: contain; background: #fff; }
+    .phone { max-width: 380px; }
+    ol.install { margin: 0; padding-left: 20px; }
+    ol.install li { margin: 6px 0; }
+    code { background: var(--chip); border: 1px solid var(--border); padding: 1px 6px; border-radius: 6px; font-size: 14px; }
+    .tips { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+    .tip { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+    .tip b { display: block; margin-bottom: 4px; }
+    .tip p { margin: 0; color: var(--muted); font-size: 15px; }
+    a { color: inherit; }
+    @media (max-width: 760px) { .split { grid-template-columns: 1fr; } section.step { margin-top: 48px; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="brandmark"><span class="logo">F</span> FitID</div>
+    <h1>Enter your measurements once.<br>See your size on every store.</h1>
+    <p class="lead">A walkthrough of the FitID extension for Microsoft Edge. Every screenshot below was taken from the real extension running on live stores. Shopping on your phone? Use the website: <a href="https://fitid-sizes.vercel.app/">fitid-sizes.vercel.app</a>.</p>
+    <p class="quote">“A Medium at Zara doesn’t fit the same as a Medium at H&amp;M.” FitID reads each product’s own size chart and matches it to your body, so you stop guessing and returning.</p>
+    <div class="flow"><span>1 · Install</span><span>2 · Create profile</span><span>3 · Shop as usual</span><span>4 · Hidden size guides</span><span>5 · Toolbar popup</span></div>
+
+    <section class="step">
+      <h2><span class="num">1</span>Install it in Edge (one time)</h2>
+      <p class="sub">FitID isn’t in the Edge Add-ons store yet, so you load it from its folder.</p>
+      <div class="tip">
+        <ol class="install">
+          <li><a href="https://fitid-sizes.vercel.app/downloads/fitid-extension.zip"><b>Download fitid-extension.zip</b></a> and unzip it (right-click → Extract All).</li>
+          <li>Open <code>edge://extensions</code> in a new tab and turn on <b>Developer mode</b> (left sidebar).</li>
+          <li>Click <b>Load unpacked</b> and pick the unzipped <code>fitid-extension</code> folder.</li>
+          <li>Pin it: puzzle-piece icon → eye icon next to <b>FitID</b>. The black T-shirt icon stays in your toolbar.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="step">
+      <h2><span class="num">2</span>Create your size profile</h2>
+      <p class="sub">The profile page opens by itself after you install. Enter <b>height, chest, waist and shoulders</b>. Height can be in cm or like <code>5'9</code>. Weight and foot length are optional, and FitID estimates anything you leave blank. Click <b>Save profile</b>.</p>
+      <div class="grid2">
+        <figure class="shot"><img src="img/01-profile.jpg" alt="FitID profile page with height, chest, waist and shoulders filled in"><figcaption>“Enter it once”: the four measurements from the reel, up front.</figcaption></figure>
+        <figure class="shot"><img src="img/02-profile-sizes.jpg" alt="My sizes summary after saving"><figcaption>After saving: your standard sizes in every system (letter, waist size, shoe UK/US/EU/IND).</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="step">
+      <h2><span class="num">3</span>Shop as usual. Your size appears by itself.</h2>
+      <p class="sub">Open any product on Myntra, AJIO, Flipkart or Amazon. A small FitID card slides in at the bottom right with <b>your size for this exact product</b>, worked out from the product’s own size chart. Nothing to click.</p>
+      <div class="split">
+        <figure class="shot"><img src="img/03-myntra.jpg" alt="Myntra product page with the FitID card showing size L"><figcaption>Myntra · Levi’s tee: FitID says <b>L</b>, and warns you’re between L and M.</figcaption></figure>
+        <figure class="shot"><img src="img/03-myntra-card.jpg" alt="FitID card with Why this size expanded"><figcaption>Tap <b>Why this size</b> to see the reasoning: this L is 42.1 in at the chest, and you’re 39 in.</figcaption></figure>
+      </div>
+      <div style="height:16px"></div>
+      <figure class="shot"><img src="img/03-myntra-selected.jpg" alt="Myntra page after clicking Select L"><figcaption>Click <b>Select L</b> and FitID picks that size on the store’s page for you. Then just add to bag.</figcaption></figure>
+      <h3 style="margin:28px 0 12px">Same profile, other stores and brands</h3>
+      <div class="cards">
+        <figure class="shot"><img src="img/04-flipkart-card.jpg" alt="FitID card on Flipkart"><figcaption>Flipkart · WROGN polo → <b>M</b></figcaption></figure>
+        <figure class="shot"><img src="img/06-amazon-card.jpg" alt="FitID card on Amazon"><figcaption>Amazon · Lymio polo → <b>M</b></figcaption></figure>
+        <figure class="shot"><img src="img/05-ajio-shoes-card.jpg" alt="FitID card on AJIO for shoes"><figcaption>AJIO · Adidas sneakers → <b>UK 8</b> (US 8.5, foot 26.5 cm)</figcaption></figure>
+      </div>
+      <p class="sub" style="margin-top:14px">Card buttons: <b>–</b> shrinks it to a small “Your size” pill, <b>×</b> hides it on that page, <b>Edit profile</b> opens your measurements.</p>
+    </section>
+
+    <section class="step">
+      <h2><span class="num">4</span>Stores that hide their size guide</h2>
+      <p class="sub">Zara, Nykaa Fashion, Levi’s and U.S. Polo only show the chart after you open it. FitID offers to do that for you.</p>
+      <div class="grid2">
+        <figure class="shot"><img src="img/07-zara-a-nudge.jpg" alt="FitID card on Zara offering to open the size guide"><figcaption>Zara: click <b>Open size guide</b> on the FitID card…</figcaption></figure>
+        <figure class="shot"><img src="img/07-zara-b-size.jpg" alt="Zara product measurements open with FitID showing size S"><figcaption>…FitID reads Zara’s product measurements and says <b>S</b>. Zara runs big, so you’re M elsewhere.</figcaption></figure>
+      </div>
+      <p class="sub" style="margin-top:14px">On any other website: open its size guide, click the FitID toolbar icon, then <b>Find my size on this page</b>.</p>
+    </section>
+
+    <section class="step">
+      <h2><span class="num">5</span>The toolbar popup: your sizes everywhere</h2>
+      <p class="sub">Click the FitID icon in the toolbar at any time.</p>
+      <div class="grid2" style="align-items:start">
+        <figure class="shot phone"><img src="img/08-popup-brands.jpg" alt="Popup listing your size at top brands"><figcaption><b>My size at top brands</b>, from each brand’s official chart: H&amp;M M, Zara S, Nike M, Adidas M, Puma M, Levi’s 33 jeans, plus shoes. Below that, every brand you’ve viewed.</figcaption></figure>
+        <div style="display:grid;gap:16px">
+          <figure class="shot phone"><img src="img/09-converter.jpg" alt="Size converter, women US 8"><figcaption><b>Converter</b>: Women US 8 = UK 12 = EU 40 = IT 44. Your own size is marked YOU.</figcaption></figure>
+          <figure class="shot phone"><img src="img/10-converter-kids.jpg" alt="Size converter, kids by age"><figcaption>Kids’ sizes by age and height, for gifts. Kids’ shoes too.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="step">
+      <h2><span class="num">★</span>Tips</h2>
+      <div class="tips">
+        <div class="tip"><b>“You’re between M and L”</b><p>FitID tells you which way each size goes: the smaller one fits closer, the bigger one is roomier.</p></div>
+        <div class="tip"><b>Fit preference</b><p>On the profile, choose Snug, Regular or Loose. Every recommendation shifts to match.</p></div>
+        <div class="tip"><b>Add real measurements</b><p>Estimated values are labelled. A tape measure on chest, waist and shoulders gives “Great match” results.</p></div>
+        <div class="tip"><b>On your phone</b><p>Extensions only work on laptops and PCs. On mobile use the website: <a href="https://fitid-sizes.vercel.app">fitid-sizes.vercel.app</a>.</p></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -49,7 +49,8 @@
     if (!isFinite(max)) return declared || 'cm';
     const cmFloor = { chest: 55, underbust: 50, waist: 45, hips: 55, shoulder: 25, inseam: 40, foot: 15, height: 100 }[key] || 50;
     const looksCm = max > cmFloor;
-    if (declared === 'cm' && !looksCm && key !== 'foot' && max < cmFloor * 0.8) return 'in';
+    // Page text says "cm" but the numbers are too small for cm (e.g. Nykaa chest 38–44): they're inches
+    if (declared === 'cm' && !looksCm && key !== 'foot') return 'in';
     if (declared === 'in' && looksCm) return 'cm';
     if (declared) return declared;
     return looksCm ? 'cm' : 'in';
@@ -211,8 +212,23 @@
         if (measured || hasSys) results.push({ table: t, sizes, ctx, visible, score: measured * 10 + sizes.length + (hasSys ? 3 : 0) + (visible ? 1000 : 0) + (ctx.type === 'body' ? 40 : 0) });
       }
     }
-    results.sort((a, b) => b.score - a.score);
-    return results;
+    // Same chart shown twice (inches + cm, e.g. Levi's): if one copy is ~2.54× the other, the
+    // smaller copy was inches read as cm — drop it so the correct one wins.
+    const keyMax = (r, k) => Math.max.apply(null, r.sizes.map((s) => (s.m[k] ? s.m[k].max : -Infinity)));
+    const drop = new Set();
+    for (const a of results) for (const b of results) {
+      if (a === b || a.sizes.length !== b.sizes.length) continue;
+      if (a.sizes.map((s) => s.label).join() !== b.sizes.map((s) => s.label).join()) continue;
+      const k = ['chest', 'waist', 'hips', 'foot', 'shoulder'].find((x) => isFinite(keyMax(a, x)) && isFinite(keyMax(b, x)));
+      if (!k) continue;
+      const ratio = keyMax(a, k) / keyMax(b, k);
+      if (ratio > 2.3 && ratio < 2.8) drop.add(b);
+      // halved by flat-measure detection: ratio ≈ 1.27 (2.54 / 2)
+      if (ratio > 1.2 && ratio < 1.34 && b.sizes.some((s) => s.m[k] && s.m[k].type === 'garment')) drop.add(b);
+    }
+    const kept = results.filter((r) => !drop.has(r));
+    kept.sort((a, b) => b.score - a.score);
+    return kept;
   }
 
   F.table = { parseTable, scan, grid, contextFor };

@@ -70,10 +70,11 @@
       <div class="card promo">
         <h2>On a laptop or PC? Get the extension</h2>
         <p style="margin:0">The FitID extension for Microsoft Edge (and Chrome) reads the size chart on Myntra, AJIO, Flipkart, Amazon and about 50 other stores by itself and shows your size right on the product page. Same profile, no copy-paste.</p>
+        <p style="margin:10px 0 0"><a href="demo/" target="_blank" rel="noopener"><b>See how it works →</b></a> A step-by-step demo with real screenshots.</p>
         <ol>
-          <li><a href="https://download-directory.github.io/?url=https://github.com/santhoshh005/FitID/tree/main/fitid-extension" target="_blank" rel="noopener"><b>Download the extension</b></a> (zip), then unzip it. Source: <a href="https://github.com/santhoshh005/FitID/tree/main/fitid-extension" target="_blank" rel="noopener">GitHub</a>.</li>
+          <li><a href="downloads/fitid-extension.zip" download><b>Download the extension</b></a> (zip, about 50 KB), then unzip it. Source: <a href="https://github.com/santhoshh005/FitID/tree/main/fitid-extension" target="_blank" rel="noopener">GitHub</a>.</li>
           <li>Open <code>edge://extensions</code>, turn on <b>Developer mode</b>.</li>
-          <li>Click <b>Load unpacked</b> and pick the folder.</li>
+          <li>Click <b>Load unpacked</b> and pick the unzipped folder.</li>
         </ol>
       </div>`;
     bind();

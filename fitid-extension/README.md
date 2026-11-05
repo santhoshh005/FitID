@@ -4,10 +4,16 @@
 
 Enter your measurements once. On a product page, FitID reads that product's own size chart and shows **your size** in a small card. One click selects that size on the page.
 
+## Build
+```bash
+powershell -ExecutionPolicy Bypass -File build.ps1
+```
+This creates `dist/fitid-extension/`, a clean copy with only the files the extension needs (it also checks that none are missing), and `dist/fitid-extension-<version>.zip`, the package to share or upload to Microsoft Edge Add-ons.
+
 ## Install in Microsoft Edge
 1. Open `edge://extensions`
 2. Turn on **Developer mode** (bottom-left)
-3. Click **Load unpacked** and choose this `fitid-extension` folder
+3. Click **Load unpacked** and choose `dist/fitid-extension` (or this `fitid-extension` folder while developing). If someone sent you the zip, unzip it first and choose the unzipped folder.
 4. The profile page opens. Enter height and weight (other measurements are optional) and click **Save profile**
 5. Pin FitID from the puzzle-piece menu so you can open it from the toolbar
 

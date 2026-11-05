@@ -22,15 +22,13 @@
   }
 
   function sizeGuideButton() {
-    const els = document.querySelectorAll('button, a, [role="button"], span, div');
-    for (const el of els) {
-      if (el.closest('#fitid-size-card-host')) continue;
-      const t = (el.textContent || '').trim();
-      if (t.length < 25 && /^(size guide|size chart|size charts|sizing guide|find your size|product measurements|size & fit|size and fit)$/i.test(t) && el.offsetParent !== null) {
-        return el.closest('button, a, [role="button"]') || el;
-      }
-    }
-    return null;
+    const re = /^(size guide|size chart|size charts|sizing guide|find your size|product measurements|size & fit|size and fit)$/i;
+    const matches = Array.from(document.querySelectorAll('button, a, [role="button"], span, div, p, label')).filter((el) =>
+      !el.closest('#fitid-size-card-host') && el.offsetParent !== null && re.test((el.textContent || '').trim()));
+    // innermost match (a <div> wrapping the real <button> won't open anything when clicked)
+    const inner = matches.filter((el) => !matches.some((o) => o !== el && el.contains(o)));
+    const el = inner.find((e) => e.closest('button, a, [role="button"]')) || inner[0];
+    return el ? el.closest('button, a, [role="button"]') || el : null;
   }
 
   function isProductPage() {
@@ -65,6 +63,7 @@
         return true;
       }
       if (!scan) {
+        if (!manual && (nudgedFor === location.href || !isProductPage())) return false;
         const btn = sizeGuideButton();
         if (manual) {
           F.ui.message('No size chart found yet', 'Open the store’s “Size guide” on this product, then click “Find my size on this page” again.', btn ? { label: 'Open size guide', run: () => btn.click() } : null);
@@ -91,8 +90,9 @@
     const obs = new MutationObserver((muts) => {
       // ignore our own card
       if (muts.every((m) => m.target && m.target.closest && m.target.closest('#fitid-size-card-host'))) return;
-      clearTimeout(timer);
-      timer = setTimeout(() => scanAndShow(false), 700);
+      // Throttle, don't debounce: pages with always-moving banners would otherwise never settle
+      if (timer) return;
+      timer = setTimeout(() => { timer = null; scanAndShow(false); }, 900);
     });
     obs.observe(document.documentElement, { childList: true, subtree: true });
   }
