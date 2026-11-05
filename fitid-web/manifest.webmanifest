@@ -1,0 +1,19 @@
+{
+  "name": "FitID – Your Size, Every Brand",
+  "short_name": "FitID",
+  "description": "Enter your measurements once. See your size at Zara, H&M, Nike and more, convert sizes, and check any store's size chart.",
+  "id": "./",
+  "start_url": "./#sizes",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f6f6f7",
+  "theme_color": "#111113",
+  "categories": ["shopping", "lifestyle", "utilities"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

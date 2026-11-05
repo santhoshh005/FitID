@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "FitID – Your Universal Size Profile",
+  "short_name": "FitID",
+  "version": "1.0.0",
+  "description": "Enter your measurements once. See your size on Myntra, AJIO, Flipkart, Amazon and other clothing & shoe stores.",
+  "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "action": { "default_popup": "popup/popup.html", "default_title": "FitID – my sizes", "default_icon": { "16": "icons/icon16.png", "32": "icons/icon32.png" } },
+  "options_page": "options/options.html",
+  "background": { "service_worker": "background.js" },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.myntra.com/*"],
+      "js": ["lib/units.js", "lib/standards.js", "lib/engine.js", "lib/profile.js", "lib/table.js", "lib/brands.js", "content/ui.js", "content/common.js", "content/sites/myntra.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.ajio.com/*"],
+      "js": ["lib/units.js", "lib/standards.js", "lib/engine.js", "lib/profile.js", "lib/table.js", "lib/brands.js", "content/ui.js", "content/common.js", "content/sites/ajio.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.flipkart.com/*"],
+      "js": ["lib/units.js", "lib/standards.js", "lib/engine.js", "lib/profile.js", "lib/table.js", "lib/brands.js", "content/ui.js", "content/common.js", "content/sites/flipkart.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.amazon.in/*", "https://www.amazon.com/*", "https://www.amazon.co.uk/*", "https://www.amazon.ae/*",
+        "https://www.amazon.ca/*", "https://www.amazon.com.au/*", "https://www.amazon.de/*", "https://www.amazon.sg/*"
+      ],
+      "js": ["lib/units.js", "lib/standards.js", "lib/engine.js", "lib/profile.js", "lib/table.js", "lib/brands.js", "content/ui.js", "content/common.js", "content/sites/amazon.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://*.meesho.com/*", "https://*.nykaafashion.com/*", "https://*.nykaa.com/*", "https://*.tatacliq.com/*",
+        "https://*.shoppersstop.com/*", "https://*.lifestylestores.com/*", "https://*.maxfashion.in/*", "https://*.westside.com/*",
+        "https://*.pantaloons.com/*", "https://*.zara.com/*", "https://*.hm.com/*", "https://*.uniqlo.com/*",
+        "https://*.levi.in/*", "https://*.levi.com/*", "https://*.nike.com/*", "https://*.nike.in/*", "https://*.adidas.co.in/*", "https://*.adidas.com/*",
+        "https://*.puma.com/*", "https://*.bewakoof.com/*", "https://*.snitch.co.in/*", "https://*.thesouledstore.com/*",
+        "https://*.decathlon.in/*", "https://*.bata.com/*", "https://*.campusshoes.com/*", "https://*.redtape.com/*",
+        "https://*.skechers.in/*", "https://*.asics.co.in/*", "https://*.libas.in/*", "https://*.fabindia.com/*",
+        "https://*.biba.in/*", "https://*.wforwoman.com/*", "https://*.abfrl.in/*", "https://*.jackjones.in/*",
+        "https://*.veromoda.in/*", "https://*.only.in/*", "https://*.marksandspencer.in/*", "https://*.mango.com/*",
+        "https://*.sheinindia.in/*", "https://*.urbanic.com/*", "https://*.jockey.in/*", "https://*.zivame.com/*",
+        "https://*.clovia.com/*", "https://*.asos.com/*", "https://*.uspoloassn.in/*", "https://*.wrogn.com/*",
+        "https://*.rarerabbit.in/*", "https://*.powerlook.in/*", "https://*.virgio.com/*", "https://*.newme.asia/*"
+      ],
+      "js": ["lib/units.js", "lib/standards.js", "lib/engine.js", "lib/profile.js", "lib/table.js", "lib/brands.js", "content/ui.js", "content/common.js", "content/sites/generic.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

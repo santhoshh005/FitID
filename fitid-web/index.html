@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FitID – Your Size, Every Brand</title>
+  <meta name="description" content="Enter your measurements once and see your size at Zara, H&M, Nike and more. Convert US, UK, EU and India sizes, and check any store's size chart.">
+  <meta name="theme-color" content="#f6f6f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="FitID">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="lib/shared.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brandmark"><span class="logo">F</span> FitID</div>
+    <button class="chip-btn" id="install" hidden>Install app</button>
+  </header>
+
+  <main>
+    <!-- ================= 1. Profile ================= -->
+    <section class="screen" id="s-profile" data-title="Profile" hidden>
+      <h1>Enter it once.</h1>
+      <p class="lead">Your height, chest, waist and shoulders. FitID turns them into your size at every brand.</p>
+
+      <form id="form" autocomplete="off" novalidate>
+        <div class="card">
+          <div class="field">
+            <span class="label">I shop</span>
+            <div class="seg" role="radiogroup" aria-label="Sizing">
+              <label><input type="radio" name="gender" value="men" checked><span>Men’s sizes</span></label>
+              <label><input type="radio" name="gender" value="women"><span>Women’s sizes</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <span class="label">Units</span>
+            <div class="seg" role="radiogroup" aria-label="Units">
+              <label><input type="radio" name="unit" value="in" checked><span>Inches</span></label>
+              <label><input type="radio" name="unit" value="cm"><span>cm</span></label>
+            </div>
+          </div>
+          <div class="row2">
+            <label class="field"><span class="label">Height</span>
+              <div class="inp"><input id="height" inputmode="text" placeholder="170 or 5'7" enterkeyhint="next"><span class="suffix">cm / ft</span></div>
+            </label>
+            <label class="field"><span class="label"><span data-men="Chest" data-women="Bust">Chest</span> <span class="badge" data-est="chest" hidden>estimated</span></span>
+              <div class="inp"><input data-m="chest" inputmode="decimal" enterkeyhint="next"><span class="suffix u">in</span></div>
+            </label>
+          </div>
+          <div class="row2">
+            <label class="field"><span class="label">Waist <span class="badge" data-est="waist" hidden>estimated</span></span>
+              <div class="inp"><input data-m="waist" inputmode="decimal" enterkeyhint="next"><span class="suffix u">in</span></div>
+            </label>
+            <label class="field"><span class="label">Shoulders <span class="badge" data-est="shoulder" hidden>estimated</span></span>
+              <div class="inp"><input data-m="shoulder" inputmode="decimal" enterkeyhint="next"><span class="suffix u">in</span></div>
+            </label>
+          </div>
+          <p class="hint" style="margin:10px 0 0">Chest: fullest part, under the arms. Waist: where you wear your jeans. Shoulders: edge to edge across the back.</p>
+        </div>
+
+        <div class="card">
+          <h2>A bit more <span class="opt">optional, fills in anything you skip</span></h2>
+          <div class="row2">
+            <label class="field"><span class="label">Weight</span>
+              <div class="inp"><input id="weight" inputmode="decimal" placeholder="70" enterkeyhint="next"><span class="suffix">kg</span></div>
+            </label>
+            <label class="field"><span class="label">Hips <span class="badge" data-est="hips" hidden>estimated</span></span>
+              <div class="inp"><input data-m="hips" inputmode="decimal" enterkeyhint="next"><span class="suffix u">in</span></div>
+            </label>
+          </div>
+          <div class="row2">
+            <label class="field women-only"><span class="label">Underbust <span class="badge" data-est="underbust" hidden>estimated</span></span>
+              <div class="inp"><input data-m="underbust" inputmode="decimal" enterkeyhint="next"><span class="suffix u">in</span></div>
+            </label>
+            <label class="field"><span class="label">Inseam <span class="badge" data-est="inseam" hidden>estimated</span></span>
+              <div class="inp"><input data-m="inseam" inputmode="decimal" enterkeyhint="next"><span class="suffix u">in</span></div>
+            </label>
+          </div>
+          <div class="field" style="margin-top:12px">
+            <span class="label">I like my clothes</span>
+            <div class="seg" role="radiogroup" aria-label="Fit preference">
+              <label><input type="radio" name="fitPref" value="snug"><span>Snug</span></label>
+              <label><input type="radio" name="fitPref" value="regular" checked><span>Regular</span></label>
+              <label><input type="radio" name="fitPref" value="loose"><span>Loose</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Feet <span class="opt">optional</span></h2>
+          <div class="row2">
+            <label class="field"><span class="label">Foot length <span class="badge" data-est="foot" hidden>estimated</span></span>
+              <div class="inp"><input id="foot" inputmode="decimal" placeholder="26" enterkeyhint="next"><span class="suffix">cm</span></div>
+            </label>
+            <label class="field"><span class="label">…or usual shoe size</span>
+              <div class="inp"><input id="shoeUK" inputmode="decimal" placeholder="8" enterkeyhint="done"><span class="suffix">UK / IND</span></div>
+            </label>
+          </div>
+          <p class="hint" style="margin:10px 0 0">Foot: heel to longest toe, standing on paper. Shoe size is used only when foot length is empty.</p>
+        </div>
+
+        <div class="savebar">
+          <button type="submit" class="btn primary block">Save &amp; see my sizes</button>
+          <span id="status" class="status" role="status"></span>
+        </div>
+        <p class="small" style="margin-top:14px">Your profile stays on this phone (browser storage). Nothing is uploaded.</p>
+      </form>
+    </section>
+
+    <!-- ================= 2. My sizes ================= -->
+    <section class="screen" id="s-sizes" data-title="My sizes" hidden></section>
+
+    <!-- ================= 3. Converter ================= -->
+    <section class="screen" id="s-convert" data-title="Converter" hidden>
+      <h1>Size converter</h1>
+      <p class="lead">US, UK, EU, India and letter sizes for men, women and kids.</p>
+      <div id="converter"></div>
+    </section>
+
+    <!-- ================= 4. Check a size chart ================= -->
+    <section class="screen" id="s-check" data-title="Check a chart" hidden>
+      <h1>Check a size chart</h1>
+      <p class="lead">Shopping in the Myntra, AJIO, Flipkart or Amazon app? Copy the product’s size chart here, or type in the sizes, and FitID picks yours.</p>
+      <div id="check"></div>
+    </section>
+  </main>
+
+  <nav class="tabbar" aria-label="Sections">
+    <a href="#profile" data-tab="profile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>Profile</a>
+    <a href="#sizes" data-tab="sizes"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3 3 6l2 5 2-1v11h10V10l2 1 2-5-5-3c-.5 1.7-2 3-4 3S8.5 4.7 8 3Z"/></svg></span>My sizes</a>
+    <a href="#convert" data-tab="convert"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h14l-4-4M20 16H6l4 4"/></svg></span>Convert</a>
+    <a href="#check" data-tab="check"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 7v4M11 7v3M15 7v4M19 7v3"/></svg></span>Check chart</a>
+  </nav>
+
+  <!-- storage shim first: lib/profile.js reads chrome.storage when it loads -->
+  <script src="js/storage-shim.js"></script>
+  <script src="lib/units.js"></script>
+  <script src="lib/standards.js"></script>
+  <script src="lib/engine.js"></script>
+  <script src="lib/profile.js"></script>
+  <script src="lib/table.js"></script>
+  <script src="lib/summary-view.js"></script>
+  <script src="lib/converter.js"></script>
+  <script src="lib/brands.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/converter-view.js"></script>
+  <script src="js/paste.js"></script>
+  <script src="js/check-view.js"></script>
+</body>
+</html>

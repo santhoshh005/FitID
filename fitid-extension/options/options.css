@@ -1,0 +1,28 @@
+.page { max-width: 760px; margin: 0 auto; padding: 32px 16px 96px; }
+.hero h1 { font-size: 32px; line-height: 1.15; margin: 18px 0 8px; letter-spacing: -.01em; }
+.lead { color: var(--muted); margin: 0 0 24px; max-width: 60ch; }
+.grid { display: grid; gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 18px; }
+.card h2 { font-size: 16px; margin: 0 0 14px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.req, .opt { font-size: 12px; font-weight: 500; color: var(--muted); }
+.row2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.label { font-weight: 600; font-size: 13px; }
+.hint { font-size: 12px; color: var(--muted); }
+.inp { display: flex; align-items: center; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 0 10px; }
+.inp input { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 15px; padding: 10px 0; }
+.inp input:focus { outline: none; }
+.inp:focus-within { border-color: var(--focus); }
+.suffix { color: var(--muted); font-size: 12px; margin-left: 6px; white-space: nowrap; }
+.seg { display: inline-flex; flex-wrap: wrap; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 3px; gap: 3px; }
+.seg label { cursor: pointer; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg span { display: block; padding: 7px 12px; border-radius: 8px; font-weight: 600; font-size: 13px; color: var(--muted); }
+.seg input:checked + span { background: var(--accent); color: var(--accent-text); }
+.seg input:focus-visible + span { outline: 2px solid var(--focus); }
+.women-only { display: none; }
+body.women .women-only { display: flex; }
+.savebar { position: sticky; bottom: 12px; display: flex; align-items: center; justify-content: flex-end; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 10px 12px; box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+.status { color: var(--ok); font-weight: 600; font-size: 13px; }
+.status.err { color: #dc2626; }
+@media (max-width: 480px) { .hero h1 { font-size: 26px; } }

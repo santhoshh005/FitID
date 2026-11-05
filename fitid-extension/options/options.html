@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FitID – My Size Profile</title>
+  <link rel="stylesheet" href="../ui/shared.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="brandmark"><span class="logo">F</span> FitID</div>
+      <h1>Your universal size profile</h1>
+      <p class="lead">Enter it once. FitID then shows your size on Myntra, AJIO, Flipkart, Amazon and other popular clothing and shoe stores, using each product’s own size chart.</p>
+    </header>
+
+    <form id="form" class="grid" autocomplete="off">
+      <section class="card">
+        <h2>Enter it once <span class="req">height, chest, waist, shoulders</span></h2>
+        <div class="field">
+          <span class="label">I shop</span>
+          <div class="seg" role="radiogroup" aria-label="Sizing">
+            <label><input type="radio" name="gender" value="men" checked><span>Men’s sizes</span></label>
+            <label><input type="radio" name="gender" value="women"><span>Women’s sizes</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <span class="label">Units</span>
+          <div class="seg" role="radiogroup" aria-label="Units">
+            <label><input type="radio" name="unit" value="in" checked><span>Inches</span></label>
+            <label><input type="radio" name="unit" value="cm"><span>cm</span></label>
+          </div>
+        </div>
+        <div class="row2">
+          <label class="field"><span class="label">Height</span>
+            <div class="inp"><input id="height" inputmode="decimal" placeholder="170 or 5'7" required><span class="suffix">cm</span></div>
+          </label>
+          <label class="field"><span class="label" data-men="Chest" data-women="Bust">Chest</span>
+            <div class="inp"><input data-m="chest" inputmode="decimal"><span class="suffix u">in</span></div>
+            <span class="hint">Around the fullest part, under the arms</span>
+          </label>
+          <label class="field"><span class="label">Waist</span>
+            <div class="inp"><input data-m="waist" inputmode="decimal"><span class="suffix u">in</span></div>
+            <span class="hint">Where you wear your jeans</span>
+          </label>
+          <label class="field"><span class="label">Shoulders</span>
+            <div class="inp"><input data-m="shoulder" inputmode="decimal"><span class="suffix u">in</span></div>
+            <span class="hint">Edge to edge across the back</span>
+          </label>
+        </div>
+        <div class="row2">
+          <label class="field"><span class="label">Weight</span>
+            <div class="inp"><input id="weight" inputmode="decimal" placeholder="70"><span class="suffix">kg</span></div>
+            <span class="hint">Lets FitID estimate anything you leave blank</span>
+          </label>
+        </div>
+        <div class="field">
+          <span class="label">I like my clothes</span>
+          <div class="seg" role="radiogroup" aria-label="Fit preference">
+            <label><input type="radio" name="fitPref" value="snug"><span>Snug</span></label>
+            <label><input type="radio" name="fitPref" value="regular" checked><span>Regular</span></label>
+            <label><input type="radio" name="fitPref" value="loose"><span>Loose</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>More measurements <span class="opt">optional, for better accuracy</span></h2>
+        <div class="row2">
+          <label class="field"><span class="label">Hips</span>
+            <div class="inp"><input data-m="hips" inputmode="decimal"><span class="suffix u">in</span></div>
+            <span class="hint">Around the widest part</span>
+          </label>
+          <label class="field women-only"><span class="label">Underbust</span>
+            <div class="inp"><input data-m="underbust" inputmode="decimal"><span class="suffix u">in</span></div>
+            <span class="hint">Snug, just under the bust (for bra sizes)</span>
+          </label>
+          <label class="field"><span class="label">Inseam</span>
+            <div class="inp"><input data-m="inseam" inputmode="decimal"><span class="suffix u">in</span></div>
+            <span class="hint">Crotch to ankle</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Feet <span class="opt">optional</span></h2>
+        <div class="row2">
+          <label class="field"><span class="label">Foot length</span>
+            <div class="inp"><input id="foot" inputmode="decimal" placeholder="26"><span class="suffix">cm</span></div>
+            <span class="hint">Heel to longest toe, standing on paper</span>
+          </label>
+          <label class="field"><span class="label">…or my usual shoe size</span>
+            <div class="inp"><input id="shoeUK" inputmode="decimal" placeholder="8"><span class="suffix">UK / IND</span></div>
+            <span class="hint">Used only if foot length is empty</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card summary-card">
+        <h2>My sizes</h2>
+        <div id="summary" class="summary"><p class="est">Enter your height, chest and waist (or weight) to see your sizes.</p></div>
+      </section>
+
+      <div class="savebar">
+        <span id="status" class="status" role="status"></span>
+        <button type="submit" class="btn primary">Save profile</button>
+      </div>
+    </form>
+  </main>
+  <script src="../lib/units.js"></script>
+  <script src="../lib/standards.js"></script>
+  <script src="../lib/engine.js"></script>
+  <script src="../lib/profile.js"></script>
+  <script src="../lib/summary-view.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
